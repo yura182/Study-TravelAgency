@@ -1,6 +1,6 @@
-package com.yura.repository;
+package com.yura.travel.repository;
 
-import com.yura.domain.user.User;
+import com.yura.travel.domain.user.User;
 
 import java.util.HashMap;
 import java.util.Map;

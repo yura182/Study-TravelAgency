@@ -1,4 +1,4 @@
-package com.yura.domain.tour;
+package com.yura.travel.domain.tour;
 
 public enum Food {
     BB {

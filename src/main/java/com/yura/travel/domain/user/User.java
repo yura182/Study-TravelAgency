@@ -1,4 +1,4 @@
-package com.yura.domain.user;
+package com.yura.travel.domain.user;
 
 import java.util.Objects;
 
@@ -19,6 +19,15 @@ public class User {
         this.email = userBuilder.email;
         this.phone = userBuilder.phone;
         this.password = userBuilder.password;
+    }
+
+    public User(User user, String password) {
+        this.id = user.id;
+        this.name = user.name;
+        this.surname = user.surname;
+        this.email = user.email;
+        this.phone = user.phone;
+        this.password = password;
     }
 
     public static UserBuilder init() {
