@@ -111,9 +111,9 @@ public class Tour {
     public String toString() {
         StringBuilder out = new StringBuilder();
         out.append(String.format("| %-2s |", this.id));
-        out.append(String.format(" %-15s|", Objects.toString(this.name, "")));
-        out.append(String.format(" %-15s|", Objects.toString(this.type, "")));
-        out.append(String.format(" %-25s|", Objects.toString(this.tourSpecification, "")));
+        out.append(String.format(" %-25s|", Objects.toString(this.name, "")));
+        out.append(String.format(" %-20s|", Objects.toString(this.type, "")));
+        out.append(String.format(" %-35s|", Objects.toString(this.tourSpecification, "")));
         out.append(String.format(" %-6s|", Objects.toString(this.price + "$", "")));
 
         return out.toString();

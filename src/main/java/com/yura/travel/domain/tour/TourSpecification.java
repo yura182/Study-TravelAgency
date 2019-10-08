@@ -13,12 +13,6 @@ public class TourSpecification {
         this.duration = duration;
     }
 
-    public TourSpecification(TourSpecification tourSpecification) {
-        this.food = tourSpecification.food;
-        this.transport = tourSpecification.transport;
-        this.duration = tourSpecification.duration;
-    }
-
     public Food getFood() {
         return food;
     }
@@ -55,7 +49,7 @@ public class TourSpecification {
         StringBuilder out = new StringBuilder();
         out.append(Objects.toString(this.transport, ""));
         out.append(Objects.toString(", " + this.food, ""));
-        out.append(Objects.toString(", " + this.duration, ""));
+        out.append(Objects.toString(", " + this.duration + " days", ""));
 
         return out.toString();
     }

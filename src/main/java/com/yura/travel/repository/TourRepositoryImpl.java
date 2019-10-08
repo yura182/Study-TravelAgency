@@ -31,4 +31,5 @@ public class TourRepositoryImpl implements TourRepository {
     public List<Tour> getAll() {
         return new ArrayList<>(idToTour.values());
     }
+
 }
