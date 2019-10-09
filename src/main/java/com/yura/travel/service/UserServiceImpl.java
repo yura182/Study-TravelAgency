@@ -7,14 +7,19 @@ import com.yura.travel.exception.PasswordNotMatchException;
 import com.yura.travel.repository.UserRepository;
 import com.yura.travel.validator.UserValidator;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.Optional;
 
+@Service
 public class UserServiceImpl implements UserService {
-    private static final Logger LOGGER = Logger.getLogger("file");
+    private static final Logger LOGGER = Logger.getLogger(UserServiceImpl.class);
     private final UserRepository userRepository;
     private final UserValidator userValidator;
     private final PasswordEncoder passwordEncoder;
 
+    @Autowired
     public UserServiceImpl(UserRepository userRepository, UserValidator userValidator, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.userValidator = userValidator;

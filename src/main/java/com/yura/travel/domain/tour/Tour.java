@@ -9,14 +9,16 @@ public class Tour {
     private final String name;
     private final TourType type;
     private final TourSpecification tourSpecification;
-    private final Integer price;
+    private final Integer basePrice;
+    private Integer fullPrice;
 
     private Tour(TourBuilder tourBuilder) {
         this.id = nextId++;
         this.name = tourBuilder.name;
         this.type = tourBuilder.type;
         this.tourSpecification = tourBuilder.tourSpecification;
-        this.price = tourBuilder.price;
+        this.basePrice = tourBuilder.price;
+        fullPrice = fullPriceCalculate();
     }
 
     public Tour(Tour tour, TourSpecification tourSpecification) {
@@ -24,11 +26,19 @@ public class Tour {
         this.name = tour.name;
         this.type = tour.type;
         this.tourSpecification = tourSpecification;
-        this.price = tour.price;
+        this.basePrice = tour.basePrice;
+        fullPrice = fullPriceCalculate();
     }
 
     public static TourBuilder init() {
         return new TourBuilder();
+    }
+
+    private Integer fullPriceCalculate() {
+        int result = basePrice + tourSpecification.getTransport().getCost();
+        result += tourSpecification.getFood().getCost() * tourSpecification.getDuration();
+
+        return result;
     }
 
     public Long getId() {
@@ -47,8 +57,12 @@ public class Tour {
         return tourSpecification;
     }
 
-    public int getPrice() {
-        return price;
+    public int getBasePrice() {
+        return basePrice;
+    }
+
+    public Integer getFullPrice() {
+        return fullPrice;
     }
 
     public static class TourBuilder {
@@ -99,12 +113,12 @@ public class Tour {
                 name.equals(tour.name) &&
                 type == tour.type &&
                 tourSpecification.equals(tour.tourSpecification) &&
-                price.equals(tour.price);
+                basePrice.equals(tour.basePrice);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, type, tourSpecification, price);
+        return Objects.hash(id, name, type, tourSpecification, basePrice);
     }
 
     @Override
@@ -114,7 +128,7 @@ public class Tour {
         out.append(String.format(" %-25s|", Objects.toString(this.name, "")));
         out.append(String.format(" %-20s|", Objects.toString(this.type, "")));
         out.append(String.format(" %-35s|", Objects.toString(this.tourSpecification, "")));
-        out.append(String.format(" %-6s|", Objects.toString(this.price + "$", "")));
+        out.append(String.format(" %-6s|", Objects.toString(this.fullPrice + "$", "")));
 
         return out.toString();
     }

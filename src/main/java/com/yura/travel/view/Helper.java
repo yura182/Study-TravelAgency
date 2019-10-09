@@ -10,11 +10,27 @@ public class Helper {
     public static void createDemo(TourService tourService) {
         tourService.add(Tour.init().withName("Spa tour").withType(TourType.HEALTH)
                 .withSpecification(new TourSpecification(Food.FB, Transport.BUS, 5))
-                .withPrice(500).build());
+                .withPrice(300).build());
 
         tourService.add(Tour.init().withName("Beautiful Paris").withType(TourType.SIGHTSEEING)
                 .withSpecification(new TourSpecification(Food.ALL, Transport.PLANE, 2))
+                .withPrice(150).build());
+
+        tourService.add(Tour.init().withName("Beautiful Rome").withType(TourType.SIGHTSEEING)
+                .withSpecification(new TourSpecification(Food.HB, Transport.PLANE, 4))
+                .withPrice(200).build());
+
+        tourService.add(Tour.init().withName("Beautiful Prague").withType(TourType.SIGHTSEEING)
+                .withSpecification(new TourSpecification(Food.BB, Transport.BUS, 3))
+                .withPrice(100).build());
+
+        tourService.add(Tour.init().withName("Shopping in Milan").withType(TourType.SHOPPING)
+                .withSpecification(new TourSpecification(Food.HB, Transport.PLANE, 3))
                 .withPrice(300).build());
+
+        tourService.add(Tour.init().withName("Relax in Turkey").withType(TourType.PACKAGE)
+                .withSpecification(new TourSpecification(Food.HB, Transport.PLANE, 6))
+                .withPrice(700).build());
     }
 
 

@@ -1,11 +1,13 @@
 package com.yura.travel.repository;
 
 import com.yura.travel.domain.user.User;
+import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+@Repository
 public class UserRepositoryImpl implements UserRepository {
     private Map<Long, User> idToUser = new HashMap<>();
 

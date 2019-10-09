@@ -1,24 +1,34 @@
 package com.yura.travel.domain.tour;
 
 public enum Transport {
-    PLANE {
+    PLANE(200) {
         @Override
         public String toString() {
             return "Plane";
         }
     },
 
-    BUS {
+    BUS(100) {
         @Override
         public String toString() {
             return "Bus";
         }
     },
 
-    TRAIN {
+    TRAIN(150) {
         @Override
         public String toString() {
             return "Train";
         }
+    };
+
+    private final Integer cost;
+
+    Transport(Integer cost) {
+        this.cost = cost;
+    }
+
+    public Integer getCost() {
+        return this.cost;
     }
 }

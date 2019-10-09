@@ -9,10 +9,14 @@ import com.yura.travel.domain.user.User;
 import com.yura.travel.service.OrderService;
 import com.yura.travel.service.TourService;
 import com.yura.travel.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+@Component
 public class Menu {
     private static final String LINE = "---------";
     private static final String LANGUAGE = LINE + "Choose your language" +  LINE
@@ -24,6 +28,7 @@ public class Menu {
     private final TourService tourService;
     private final OrderService orderService;
 
+    @Autowired
     public Menu(UserService userService, TourService tourService, OrderService orderService) {
         this.userService = userService;
         this.tourService = tourService;
