@@ -19,7 +19,7 @@ import java.util.Scanner;
 @Component
 public class Menu {
     private static final String LINE = "---------";
-    private static final String LANGUAGE = LINE + "Choose your language" +  LINE
+    private static final String LANGUAGE = LINE + "Choose your language" + LINE
             + "\n1. English(default)\n2. Russian\n3.Your choose: ";
     private static final Scanner SCAN = new Scanner(System.in);
     private static final LocaleManager LOCALE = LocaleManager.LOCALE;
@@ -36,7 +36,7 @@ public class Menu {
         Helper.createDemo(tourService);
     }
 
-    public void run () {
+    public void run() {
         System.out.print(LANGUAGE);
         int input = SCAN.nextInt();
 
@@ -80,7 +80,7 @@ public class Menu {
 
         if (input < 0 || input > 3) {
             System.out.println(LOCALE.getString("wrong.input"));
-           mainMenu(user);
+            mainMenu(user);
         } else if (input == 0) {
             exit();
         } else {
@@ -294,14 +294,19 @@ public class Menu {
         System.out.print(LOCALE.getString("password") + " ");
         data.add(SCAN.next());
 
-        userService.register(User.init()
-                .withName(data.get(0))
-                .withSurname(data.get(1))
-                .withEmail(data.get(2))
-                .withPhone(data.get(3))
-                .withPassword(data.get(4)).build());
-        System.out.println(LOCALE.getString("user.registered"));
-        loginMenu();
+        try {
+            userService.register(User.init()
+                    .withName(data.get(0))
+                    .withSurname(data.get(1))
+                    .withEmail(data.get(2))
+                    .withPhone(data.get(3))
+                    .withPassword(data.get(4)).build());
+            System.out.println(LOCALE.getString("user.registered"));
+            loginMenu();
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            firstMenu();
+        }
     }
 
     private void loginMenu() {
@@ -311,9 +316,15 @@ public class Menu {
         String email = SCAN.next();
         System.out.print(LOCALE.getString("password") + " ");
         String password = (SCAN.next());
-        User user = userService.login(email, password);
-        System.out.println(user);
-        mainMenu(user);
+
+        try {
+            User user = userService.login(email, password);
+            System.out.println(user);
+            mainMenu(user);
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            loginMenu();
+        }
     }
 
     private int getInput() {
